@@ -30,6 +30,19 @@ const App = () => {
     return;
   }
 
+  // Update Job
+  const updateJob = async (job) => {
+    const result = await fetch(`/api/jobs/${job.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(job),
+      }
+    );
+    return;
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
@@ -42,7 +55,7 @@ const App = () => {
         />
         <Route
           path='/edit-job/:id'
-          element={<EditJobPage />}
+          element={<EditJobPage updateJobSubmit={updateJob} />}
           loader={ jobLoader }
         />
         <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
