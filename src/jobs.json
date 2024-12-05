@@ -83,6 +83,20 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
+    },
+    {
+      "id": "f964",
+      "title": "React AI Developer",
+      "type": "Remote",
+      "location": "Melbourne",
+      "description": "We are looking for a React developer who can use AI efficiently to produce code.",
+      "salary": "$125K - 150K",
+      "company": {
+        "name": "Techva",
+        "description": "Innovate",
+        "contactEmail": "info@techva.com",
+        "contactPhone": ""
+      }
     }
   ]
 }
