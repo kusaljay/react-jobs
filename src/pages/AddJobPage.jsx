@@ -12,11 +12,63 @@ const AddJobPage = ({ addJobSubmit }) => {
   const [companyDescription, setCompanyDescription] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
+  const [applicationClosingDate, setApplicationClosingDate] = useState('');
+  const [sectors, setSectors] = useState([]);
 
   const navigate = useNavigate();
 
   const submitForm = (e) => {
     e.preventDefault();
+
+    // Validation checks
+    if (!title.trim()) {
+      toast.error('Job title is required');
+      return;
+    }
+    if (!location.trim()) {
+      toast.error('Location is required');
+      return;
+    }
+    if (!description.trim()) {
+      toast.error('Job description is required');
+      return;
+    }
+    if (!applicationClosingDate) {
+      toast.error('Application closing date is required');
+      return;
+    }
+    if (!companyName.trim()) {
+      toast.error('Company name is required');
+      return;
+    }
+    if (!companyDescription.trim()) {
+      toast.error('Company description is required');
+      return;
+    }
+    if (!contactEmail.trim()) {
+      toast.error('Contact email is required');
+      return;
+    }
+    if (sectors.length === 0) {
+      toast.error('Please select at least one sector');
+      return;
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(contactEmail)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    // Phone format validation (if provided)
+    if (contactPhone.trim()) {
+      const phoneRegex = /^\+?[\d\s-]{10,}$/;
+      if (!phoneRegex.test(contactPhone)) {
+        toast.error('Please enter a valid phone number');
+        return;
+      }
+    }
 
     const  newJob = {
       title,
@@ -24,11 +76,13 @@ const AddJobPage = ({ addJobSubmit }) => {
       location,
       description,
       salary,
+      applicationClosingDate,
       company: {
         name: companyName,
         description: companyDescription,
         contactEmail,
         contactPhone,
+        sectors,
       },
     }
 
@@ -72,7 +126,7 @@ const AddJobPage = ({ addJobSubmit }) => {
                   id="title"
                   name="title"
                   className="border rounded w-full py-2 px-3 mb-2"
-                  placeholder="eg. Beautiful Apartment In Miami"
+                  placeholder="eg. Senior Software Engineer"
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -89,6 +143,7 @@ const AddJobPage = ({ addJobSubmit }) => {
                   className="border rounded w-full py-2 px-3"
                   rows="4"
                   placeholder="Add any job duties, expectations, requirements, etc"
+                  required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}></textarea>
               </div>
@@ -134,6 +189,21 @@ const AddJobPage = ({ addJobSubmit }) => {
                 />
               </div>
 
+              <div className='mb-4'>
+                <label className='block text-gray-700 font-bold mb-2'>
+                  Application Closing Date
+                </label>
+                <input
+                  type='date'
+                  id='closingDate'
+                  name='closingDate'
+                  className='border rounded w-full py-2 px-3 mb-2'
+                  required
+                  value={applicationClosingDate}
+                  onChange={(e) => setApplicationClosingDate(e.target.value)}        
+                />
+              </div>
+              
               <h3 className="text-2xl mb-5">Company Info</h3>
 
               <div className="mb-4">
@@ -145,6 +215,7 @@ const AddJobPage = ({ addJobSubmit }) => {
                   name="company"
                   className="border rounded w-full py-2 px-3"
                   placeholder="Company Name"
+                  required
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                 />
@@ -161,6 +232,7 @@ const AddJobPage = ({ addJobSubmit }) => {
                   className="border rounded w-full py-2 px-3"
                   rows="4"
                   placeholder="What does your company do?"
+                  required
                   value={companyDescription}
                   onChange={(e) => setCompanyDescription(e.target.value)}
                 ></textarea>
@@ -196,6 +268,36 @@ const AddJobPage = ({ addJobSubmit }) => {
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
                 />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  htmlFor="sectors"
+                  className="block text-gray-700 font-bold mb-2"
+                  >Company Sectors</label>
+                <select
+                  id="sectors"
+                  name="sectors"
+                  className="border rounded w-full py-2 px-3"
+                  multiple
+                  required
+                  value={sectors}
+                  onChange={(e) => setSectors(Array.from(e.target.selectedOptions, option => option.value))}
+                >
+                  <option value="Technology">Technology</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Education">Education</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="Services">Services</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Energy">Energy</option>
+                  <option value="Construction">Construction</option>
+                  <option value="Agriculture">Agriculture</option>
+                </select>
+                <small className="text-gray-500">Hold Ctrl/Cmd to select multiple sectors</small>
               </div>
 
               <div>

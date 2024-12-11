@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import JobsPage from './pages/JobsPage';
@@ -10,15 +10,21 @@ import EditJobPage from './pages/EditJobPage';
 const App = () => {
   // Add Job
   const addJob = async (newJob) => {
-    const result = await fetch('/api/jobs', {
+    try {
+      const result = await fetch('/api/jobs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(newJob),
+      });
+      if (!result.ok) {
+        throw new Error('Failed to add job. Status: ' + result.status);
       }
-    );
-    return;
+    } catch (error) {
+      console.error('Failed to add job', error);
+      throw error;
+    }
   }
 
   // Delete Job

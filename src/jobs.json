@@ -97,6 +97,73 @@
         "contactEmail": "info@techva.com",
         "contactPhone": ""
       }
+    },
+    {
+      "id": "a228",
+      "title": "Javascript Prompt Engineer",
+      "type": "Remote",
+      "location": "Sydney",
+      "description": "Ability to use a wide range of AI models and agents.",
+      "salary": "$125K - 150K",
+      "applicationDueDate": "2024-12-31",
+      "company": {
+        "name": "AITech",
+        "description": "All things AI",
+        "contactEmail": "admin@aitech.com",
+        "contactPhone": "0404040404"
+      }
+    },
+    {
+      "id": "327c",
+      "title": "Senior Python Developer",
+      "type": "Full-Time",
+      "location": "Northern Territory Australia",
+      "description": "Must have 10 years experience handling all kinds of pythons.",
+      "salary": "$125K - 150K",
+      "applicationClosingDate": "2025-01-25",
+      "company": {
+        "name": "TameThatSmartSnake",
+        "description": "We strive to tame the wild python code out there.",
+        "contactEmail": "tame@ttss.com",
+        "contactPhone": "0404040404",
+        "sectors": [
+          "Technology",
+          "Services",
+          "Agriculture"
+        ]
+      }
+    },
+    {
+      "id": "4054",
+      "title": "",
+      "type": "Full-Time",
+      "location": "",
+      "description": "",
+      "salary": "Under $50K",
+      "applicationClosingDate": "",
+      "company": {
+        "name": "",
+        "description": "",
+        "contactEmail": "",
+        "contactPhone": "",
+        "sectors": []
+      }
+    },
+    {
+      "id": "948c",
+      "title": "",
+      "type": "Full-Time",
+      "location": "",
+      "description": "",
+      "salary": "Under $50K",
+      "applicationClosingDate": "",
+      "company": {
+        "name": "",
+        "description": "",
+        "contactEmail": "",
+        "contactPhone": "",
+        "sectors": []
+      }
     }
   ]
 }
